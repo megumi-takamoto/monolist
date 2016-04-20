@@ -1,3 +1,4 @@
+<!--Twitterクローンのフォロー機能に似た実装-->
 <% if params[:type] == "Have" %>
   $(".have-<%= @item.id %>,.have-<%= @item.asin %>").replaceWith("<%= escape_javascript(render('items/unhave' , item: @item)) %>");
 <% else %>

@@ -1,11 +1,12 @@
+#「Have」または「Want」ボタンが押された時にユーザーの「Have」または「Want」を登録します。また、Itemsテーブルにデータが存在しない場合はAPIを用いて商品の情報を追加し保存します。
 class OwnershipsController < ApplicationController
   before_action :logged_in_user
 
   def create
     if params[:asin]
-      @item = Item.find_or_initialize_by(asin: params[:asin])
+      @item = Item.find_or_initialize_by(asin: params[:asin]) #Itemをasinという値で検索して、存在する場合はそのデータを返し
     else
-      @item = Item.find(params[:item_id])
+      @item = Item.find(params[:item_id]) #それ以外は与えた値(今回はasin)でItem.newした状態のItemモデルを返す
     end
 
     # itemsテーブルに存在しない場合はAmazonのデータを登録する。
